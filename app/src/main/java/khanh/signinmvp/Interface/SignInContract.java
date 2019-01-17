@@ -5,4 +5,7 @@ public interface SignInContract {
         void signInSuccess();
         void signInFailure(String error);
     }
+    interface Presenter{
+        void handleSignIn(String userName, String passWord);
+    }
 }
