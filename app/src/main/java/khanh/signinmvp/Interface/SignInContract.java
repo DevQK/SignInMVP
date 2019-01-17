@@ -8,4 +8,5 @@ public interface SignInContract {
     interface Presenter{
         void handleSignIn(String userName, String passWord);
     }
+
 }
