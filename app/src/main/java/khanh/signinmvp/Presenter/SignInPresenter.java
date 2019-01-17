@@ -16,5 +16,6 @@ public class SignInPresenter implements SignInContract.Presenter {
             mView.signInSuccess();
             return;
         }
+        mView.signInFailure("UserName or PassWord not true !");
     }
 }
