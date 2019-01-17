@@ -1,11 +1,13 @@
 package khanh.signinmvp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import khanh.signinmvp.Interface.SignInContract;
 import khanh.signinmvp.Presenter.SignInPresenter;
@@ -41,16 +43,31 @@ public class MainActivity extends AppCompatActivity implements SignInContract.Vi
     }
     @Override
     public void signInSuccess() {
-
+        Toast.makeText(this, "Sign In Succes !", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     @Override
     public void signInFailure(String error) {
-
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.button_sign_in:
+                login();
+                break;
+        }
+    }
 
+    private void login() {
+        String userName = edtUserName.getText().toString();
+        String passWord = edtPassWord.getText().toString();
+        if (userName.isEmpty() || passWord.isEmpty()){
+            Toast.makeText(this, "User or Pass is Empty !", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        presenter.handleSignIn(userName, passWord);
     }
 }
